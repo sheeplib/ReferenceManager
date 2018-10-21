@@ -1,0 +1,9 @@
+英文名,中文名,正则表达式,内容,内容高度,模板
+label,标签,"”@article{(\w*),“",thit is label,1,"”@article{%replace%,“"
+title,标题,"""title *= *{ *([^}{\n]*) *},""",this is title,2,""" title={%replace%},"""
+author,作者,"""author *= *{ *([^}{\n]*) *},""",,2,""" author={%replace%},"""
+journal,期刊,"""journal *= *{ *([^}{\n]*) *},""",,1,""" journal={%replace%},"""
+volume,卷号,"""volume *= *{ *([^}{\n]*) *},""",,1,""" volume={%replace%},"""
+number,刊号,"""number *= *{ *([^}{\n]*) *},""",,1,""" number={%replace%},"""
+pages,页码,"""pages *= *{ *([^}{\n]*) *},""",,1,""" pages={%replace%},"""
+year,年份,"""year *= *{ *([^}{\n]*) *},""",,1,""" year={%replace%},"""

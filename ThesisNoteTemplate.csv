@@ -1,0 +1,4 @@
+英文名,中文名,正则表达式,内容,内容高度,模板
+label,标签,"""%\s*article{(\w*),""",this is label,1,"""article{%replace%,"""
+note,阅读笔记,"""note *= *{ *([^}{\n]*) *},""",工农哦弄欧冠,10,""" note={%replace%},"""
+keyword,关键词,"""keyword *= *{ *([^}{\n]*) *},""",工农哦弄欧冠,1,""" keyword={%replace%},"""
