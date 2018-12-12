@@ -127,7 +127,7 @@ class Textractor(object):
         self.name = self.data['标题']
 class Tbase(Textractor):
     # 一篇基本信息记录
-    reg = re.compile(r'@article{')
+    reg = re.compile(r'@\w*{')
     def __init__(self, label='default'):
         Textractor.__init__(self, tbasetemplate)
         self.setlabel(label)
@@ -190,6 +190,7 @@ class Tlibrary(object): # 所有论文信息集合，label为唯一key
     def addbibrecord(self, text):
         trec = Trecord()
         trec.loadbibrecord(text)
+        #print(trec.base.label+'///'+trec.name)
         self.addtrecord(trec)
     def loadbib(self, filename='test.bib'): # 从bib文件中读取数据
         bibreader = openbib(filename)
@@ -206,7 +207,7 @@ class Tlibrary(object): # 所有论文信息集合，label为唯一key
             elif Tnote.reg.match(record):
                 tnote = Tnote()
                 tnote.loadbibrecord(record)
-                if legallabel(tbase.label):
+                if legallabel(tnote.label):
                     index = self._autoindex(tnote.label)
                     self._data[index].note = tnote
             record = bibreader.readrecord()
@@ -280,7 +281,7 @@ class Bibfile(object): # 读取bib文件用
     '''
     读取bib文件用
     '''
-    objhead=re.compile('@article{|%\s*article{')
+    objhead=re.compile('@\w*{|%\s*article{')
     def __init__(self, filestream):
         self.fs = filestream
     def readrecord(self):
